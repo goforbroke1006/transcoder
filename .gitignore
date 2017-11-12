@@ -19,4 +19,5 @@
 !/build/.gitkeep
 
 /bucket/
-!/bucket/**/.gitkeep
+!bucket/input/.gitkeep
+!bucket/output/.gitkeep
