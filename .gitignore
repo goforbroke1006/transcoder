@@ -15,7 +15,7 @@
 
 /.idea/
 /vendor/
-/build/
+/build
 !/build/.gitkeep
 
 /bucket/

@@ -19,8 +19,10 @@ services:
     volumes:
       - ./:/code
       - ./build:/build
+    working_dir: /code
 #    command: go build -o /bin/transcoder /code/cmd/transcoder/main.go
-    command: go build -o /build/transcoder /code/cmd/transcoder/main.go
+#    command: go build -o /build/transcoder /code/cmd/transcoder/main.go
+    command: /usr/local/go/bin/go
 
 #  rabbit:
 #    image: rabbitmq:3-management
