@@ -15,3 +15,8 @@
 
 /.idea/
 /vendor/
+/build/
+!/build/.gitkeep
+
+/bucket/
+!/bucket/**/.gitkeep

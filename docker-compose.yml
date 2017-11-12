@@ -1,0 +1,29 @@
+version: '2'
+
+services:
+
+#  workspace:
+#    build: .
+#    volumes:
+#      - ./:/code
+#    command: /usr/local/go/bin/go build -o /usr/local/bin/transcoder /code/cmd/transcoder/main.go && transcoder
+
+  ffmpeg:
+    image: jrottenberg/ffmpeg
+    volumes:
+      - ./bucket/input:/bucket/input
+      - ./bucket/output:/bucket/output
+
+  golang:
+    image: golang:1.9
+    volumes:
+      - ./:/code
+      - ./build:/build
+#    command: go build -o /bin/transcoder /code/cmd/transcoder/main.go
+    command: go build -o /build/transcoder /code/cmd/transcoder/main.go
+
+#  rabbit:
+#    image: rabbitmq:3-management
+#    ports:
+#      - 5672:5672
+#      - 15672:15672
