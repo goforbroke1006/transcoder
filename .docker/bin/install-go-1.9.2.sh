@@ -9,5 +9,6 @@ echo "export PATH=$PATH:$GOROOT/bin" >> ~/.profile
 
 mkdir -p ~/go/{bin,pkg,src}
 echo "export GOPATH=~/go" >> ~/.profile
+echo "export PATH=$PATH:$GOPATH/bin" >> ~/.profile
 
 source ~/.profile
