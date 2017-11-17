@@ -32,3 +32,4 @@ sudo apt-get -y install docker-ce
 ### RUN WITHOUT SUDO
 sudo usermod -aG docker $USER
 sudo chmod -R 0777 ~/.docker/
+sudo chmod -R 0777 /var/run/docker.sock
