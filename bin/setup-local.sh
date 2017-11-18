@@ -1,3 +1,13 @@
 #!/usr/bin/env bash
 
 docker run goforbroke1006/transcoder bash
+
+docker-compose exec workspace ffmpeg -y -i /bucket/input/H264_720p.ts /bucket/output/H264_720p.mp4
+
+
+sudo chmod -R 0777 ./bucket/output/
+
+docker-compose exec workspace transcoder
+
+
+ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default=nokey=1:noprint_wrappers=1 /bucket/input/katamari-star8-10s.rmvb

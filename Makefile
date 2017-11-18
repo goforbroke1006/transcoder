@@ -2,7 +2,7 @@ PROJECT=transcoder
 DOCKER_ID_USER=goforbroke1006
 
 app_build:
-	go build -o /code/build/${PROJECT} /code/cmd/${PROJECT}/main.go
+	go build -o ./build/${PROJECT} ./cmd/${PROJECT}/main.go
 
 image:
 	docker build -t ${DOCKER_ID_USER}/${PROJECT} .

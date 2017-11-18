@@ -42,4 +42,6 @@ WORKDIR /code
 #EXPOSE 8080
 #ENTRYPOINT /bin/bash
 
-CMD /bin/bash
+#CMD /bin/bash
+
+CMD tail -f /dev/null

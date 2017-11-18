@@ -5,8 +5,10 @@ services:
   workspace:
     build: .
     volumes:
-      - ./:/code
-    command: /bin/bash
+      - ./build/transcoder:/bin/transcoder
+      - ./bucket/input:/bucket/input
+      - ./bucket/output:/bucket/output
+#    command: /bin/bash
 
 #  ffmpeg:
 #    image: jrottenberg/ffmpeg
