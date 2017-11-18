@@ -35,9 +35,11 @@ RUN apt-get install -y ffmpeg x264
 
 WORKDIR /code
 
-ADD ./ /code
-CMD /usr/local/go/bin/go build -o /usr/local/bin/transcoder /code/cmd/transcoder/main.go
+#ADD ./ /code
+#CMD /usr/local/go/bin/go build -o /usr/local/bin/transcoder /code/cmd/transcoder/main.go
 #CMD /usr/local/bin/transcoder &> /dev/null &
 
-EXPOSE 8080
-ENTRYPOINT /bin/bash
+#EXPOSE 8080
+#ENTRYPOINT /bin/bash
+
+CMD /bin/bash

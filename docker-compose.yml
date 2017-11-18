@@ -6,7 +6,7 @@ services:
     build: .
     volumes:
       - ./:/code
-    command: /usr/local/go/bin/go build -o /usr/local/bin/transcoder /code/cmd/transcoder/main.go && transcoder
+    command: /bin/bash
 
 #  ffmpeg:
 #    image: jrottenberg/ffmpeg

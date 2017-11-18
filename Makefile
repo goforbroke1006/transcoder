@@ -10,6 +10,6 @@ image:
 
 container:
 	docker-compose stop || true
-#	docker rm -f $(docker-compose ps -q) || true
+	docker rm -f $(docker-compose ps -q) || true
 	docker-compose build
 	docker-compose up -d
