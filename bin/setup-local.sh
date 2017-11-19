@@ -17,3 +17,9 @@ ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default
 
 
 ffmpeg -i /bucket/input/small.3gp -vcodec copy -acodec copy /bucket/output/small.mp4
+
+
+
+
+docker-compose exec workspace transcoder "drop.avi flame.avi H264_720p.ts katamari-star8-10s.mpg katamari-star8-10s.rmvb katamari-star8-10s.wmv katamari-star8-10s-h264.mov sample.3gp"
+docker-compose exec workspace transcoder "flame.avi H264_720p.ts katamari-star8-10s.mpg katamari-star8-10s.rmvb katamari-star8-10s.wmv katamari-star8-10s-h264.mov sample.3gp"

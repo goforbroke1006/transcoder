@@ -1,13 +1,11 @@
 package preset
 
 import (
-	"errors"
 	"fmt"
 	"log"
 	"os"
 	"os/exec"
 	"strings"
-	"time"
 )
 
 func GetVideoCodec(filename string) (string, error) {
@@ -36,11 +34,15 @@ func SmtInSlice(needle interface{}, haystack []interface{}) bool {
 	return false
 }
 
-func FileExists(filePath string) bool {
-	if _, err := os.Stat(filePath); os.IsNotExist(err) {
-		return true
+func FileExists(path string) (bool, error) {
+	_, err := os.Stat(path)
+	if err == nil {
+		return true, nil
 	}
-	return false
+	if os.IsNotExist(err) {
+		return false, nil
+	}
+	return true, err
 }
 
 type Preset interface {
@@ -59,34 +61,35 @@ func (wv *WebVideo) Execute(filePaths []string) ([]string, error) {
 
 	for _, filename := range filePaths {
 
-		if false == FileExists(filename) {
+		if ok, _ := FileExists(filename); ok {
 			continue
 		}
 
 		parts := strings.Split(filename, ".")
 		name, extension := parts[0], parts[1]
 		codec, err := GetVideoCodec(filename)
+		outFile := fmt.Sprintf("/bucket/output/%s.mp4", name)
 
 		var convertCmd string
 
 		if extension == "avi" {
-			convertCmd = fmt.Sprintf("ffmpeg -y -i /bucket/input/%s -vcodec libx264 -acodec libfaac /bucket/output/%s.mp4",
-				filename, name)
+			convertCmd = fmt.Sprintf("ffmpeg -y -i /bucket/input/%s -vcodec libx264 -acodec libfaac %s",
+				filename, outFile)
 		}
 
 		if codec == "h264" {
-			convertCmd = fmt.Sprintf("ffmpeg -y -i /bucket/input/%s /bucket/output/%s.mp4",
-				filename, name)
+			convertCmd = fmt.Sprintf("ffmpeg -y -i /bucket/input/%s %s",
+				filename, outFile)
 		}
 
 		if SmtInSlice(extension, []interface{}{"3gp", "3g2"}) && codec == "mpeg4" {
-			convertCmd = fmt.Sprintf("ffmpeg -i /bucket/input/%s -vcodec copy -acodec copy /bucket/output/%s.mp4",
-				filename, name)
+			convertCmd = fmt.Sprintf("ffmpeg -i /bucket/input/%s -vcodec copy -acodec copy %s",
+				filename, outFile)
 		}
 
 		if extension == "3gp" && codec == "h263" {
-			convertCmd = fmt.Sprintf("ffmpeg -i /bucket/input/%s -c:v libx264 -c:a aac -strict experimental /bucket/output/%s.mp4",
-				filename, name)
+			convertCmd = fmt.Sprintf("ffmpeg -i /bucket/input/%s -c:v libx264 -c:a aac -strict experimental %s",
+				filename, outFile)
 		}
 
 		//log.Println(convertCmd)
@@ -96,17 +99,17 @@ func (wv *WebVideo) Execute(filePaths []string) ([]string, error) {
 			return nil, err
 		}
 
-		time.Sleep(3 * time.Second)
-
-		outFile := fmt.Sprintf("/bucket/output/%s.mp4", name)
-		if false == FileExists(outFile) {
-			return nil, errors.New("Not found result file " + outFile + ". Maybe you have not decision for case CODEC=" + codec + ";EXTENSION=" + extension)
-		}
-
-		_, err = Exec(fmt.Sprintf("rm -f /bucket/input/%s", filename))
-		if err != nil {
-			return nil, err
-		}
+		//time.Sleep(3 * time.Second)
+		//Exec("ls -lah")
+		//
+		//if ok, _ := FileExists(outFile); ok {
+		//	return nil, errors.New("Not found result file " + outFile + ". Maybe you have not decision for case CODEC=" + codec + ";EXTENSION=" + extension)
+		//}
+		//
+		//_, err = Exec(fmt.Sprintf("rm -f /bucket/input/%s", filename))
+		//if err != nil {
+		//	return nil, err
+		//}
 
 		out = append(out, outFile)
 	}
