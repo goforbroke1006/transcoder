@@ -11,3 +11,9 @@ docker-compose exec workspace transcoder
 
 
 ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default=nokey=1:noprint_wrappers=1 /bucket/input/katamari-star8-10s.rmvb
+
+ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default=nokey=1:noprint_wrappers=1 /bucket/input/small.3gp | tail -1
+ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default=nokey=1:noprint_wrappers=1 /bucket/input/sample.3gp | tail -1
+
+
+ffmpeg -i /bucket/input/small.3gp -vcodec copy -acodec copy /bucket/output/small.mp4
