@@ -4,9 +4,11 @@ sudo apt-get update
 sudo apt-get install -y git curl wget
 
 cd ~/
-rm -f go1.9.2.linux-amd64.tar.gz
-wget https://storage.googleapis.com/golang/go1.9.2.linux-amd64.tar.gz
-sudo tar -C /usr/local -xvzf go1.9.2.linux-amd64.tar.gz
+GO_DIST=go1.9.1.linux-amd64.tar.gz
+rm -f ${GO_DIST}
+wget https://storage.googleapis.com/golang/${GO_DIST}
+sudo tar -C /usr/local -xvzf ${GO_DIST}
+rm -f ${GO_DIST}
 echo "export GOROOT=/usr/local/go" >> ~/.profile
 echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.profile
 
