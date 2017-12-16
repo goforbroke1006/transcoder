@@ -8,12 +8,12 @@ rm -f go1.9.2.linux-amd64.tar.gz
 wget https://storage.googleapis.com/golang/go1.9.2.linux-amd64.tar.gz
 sudo tar -C /usr/local -xvzf go1.9.2.linux-amd64.tar.gz
 echo "export GOROOT=/usr/local/go" >> ~/.profile
-echo 'export PATH=$PATH:$GOROOT/bin' >> ~/.profile
+echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.profile
 
 sudo mkdir -p ~/go/{bin,pkg,src}
 sudo chmod -R 0777 ~/go/
 echo "export GOPATH=~/go" >> ~/.profile
-echo 'export PATH=$PATH:$GOPATH/bin' >> ~/.profile
+echo 'export PATH=$PATH:~/go/bin' >> ~/.profile
 
 source ~/.profile
 
