@@ -30,3 +30,6 @@ sudo mv protoc3/bin/* /usr/local/bin/
 sudo mv protoc3/include/* /usr/local/include/
 #sudo ln -s ~/protoc3/bin/protoc /usr/bin/protoc
 
+# Use SSH keys force
+git config --global url.ssh://git@github.com/.insteadOf https://github.com/
+git config --global url.ssh://git@gitlab.devim.team/.insteadOf https://gitlab.devim.team/
