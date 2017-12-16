@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-apt-get update
-apt-get install -y git curl wget
+sudo apt-get update
+sudo apt-get install -y git curl wget
 
 wget https://storage.googleapis.com/golang/go1.9.2.linux-amd64.tar.gz
 tar -C /usr/local -xvzf go1.9.2.linux-amd64.tar.gz
