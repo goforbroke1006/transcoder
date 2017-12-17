@@ -4,7 +4,8 @@ sudo apt-get update
 sudo apt-get install -y git curl wget
 
 cd ~/
-GO_DIST=go1.9.1.linux-amd64.tar.gz
+#GO_DIST=go1.9.1.linux-amd64.tar.gz
+GO_DIST=go1.10beta1.darwin-amd64.tar.gz
 rm -f ${GO_DIST}
 wget https://storage.googleapis.com/golang/${GO_DIST}
 sudo tar -C /usr/local -xvzf ${GO_DIST}
