@@ -36,3 +36,4 @@ sudo mv protoc3/include/* /usr/local/include/
 # Use SSH keys force
 git config --global url.ssh://git@github.com/.insteadOf https://github.com/
 git config --global url.ssh://git@gitlab.devim.team/.insteadOf https://gitlab.devim.team/
+git config --global url.ssh://git@bitbucket.org/.insteadOf https://bitbucket.org/
