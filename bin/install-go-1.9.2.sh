@@ -4,10 +4,10 @@ sudo apt-get update
 sudo apt-get install -y git curl wget
 
 cd ~/
-#GO_DIST=go1.9.1.linux-amd64.tar.gz
-GO_DIST=go1.10beta1.darwin-amd64.tar.gz
-rm -f ${GO_DIST}
-wget https://storage.googleapis.com/golang/${GO_DIST}
+GO_DIST=go1.9.1.linux-amd64.tar.gz
+#GO_DIST=go1.10beta1.darwin-amd64.tar.gz
+#rm -f ${GO_DIST}
+wget -o ${GO_DIST} https://storage.googleapis.com/golang/${GO_DIST}
 sudo tar -C /usr/local -xvzf ${GO_DIST}
 rm -f ${GO_DIST}
 echo "export GOROOT=/usr/local/go" >> ~/.profile
@@ -34,6 +34,6 @@ sudo mv protoc3/include/* /usr/local/include/
 #sudo ln -s ~/protoc3/bin/protoc /usr/bin/protoc
 
 # Use SSH keys force
-git config --global url.ssh://git@github.com/.insteadOf https://github.com/
-git config --global url.ssh://git@gitlab.devim.team/.insteadOf https://gitlab.devim.team/
-git config --global url.ssh://git@bitbucket.org/.insteadOf https://bitbucket.org/
+#git config --global url.ssh://git@github.com/.insteadOf https://github.com/
+#git config --global url.ssh://git@gitlab.devim.team/.insteadOf https://gitlab.devim.team/
+#git config --global url.ssh://git@bitbucket.org/.insteadOf https://bitbucket.org/
