@@ -16,7 +16,9 @@ sudo add-apt-repository \
 
 # INSTALL DOCKER CE
 sudo apt-get update
-sudo apt-get -y install docker-ce docker-compose
+sudo apt-get -y install docker-ce # docker-compose
+sudo curl -L https://github.com/docker/compose/releases/download/1.21.0/docker-compose-$(uname -s)-$(uname -m) \
+    -o /usr/local/bin/docker-compose
 
 ### RUN WITHOUT SUDO
 sudo usermod -aG docker $USER
