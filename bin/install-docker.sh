@@ -26,4 +26,4 @@ sudo chmod -R 0777 ~/.docker/
 sudo chmod -R 0777 /var/run/docker.sock
 sudo chmod 0777 /usr/local/bin/docker-compose
 
-sudo docker run hello-world
+docker run hello-world
