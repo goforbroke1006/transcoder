@@ -1,27 +1,31 @@
 #!/usr/bin/env bash
 
+GO_DIST=go1.9.1.linux-amd64.tar.gz
+GO_LOCAL_DIR=~/golang
+
 sudo apt-get update
 sudo apt-get install -y git curl wget
 
 cd ~/
-GO_DIST=go1.9.1.linux-amd64.tar.gz
-#GO_DIST=go1.10beta1.darwin-amd64.tar.gz
-#rm -f ${GO_DIST}
+rm -f ${GO_DIST}
 wget -o ${GO_DIST} https://storage.googleapis.com/golang/${GO_DIST}
 sudo tar -C /usr/local -xvzf ${GO_DIST}
 rm -f ${GO_DIST}
 echo "export GOROOT=/usr/local/go" >> ~/.profile
 echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.profile
 
-sudo mkdir -p ~/go/{bin,pkg,src}
-sudo chmod -R 0777 ~/go/
-echo "export GOPATH=~/go" >> ~/.profile
-echo 'export PATH=$PATH:~/go/bin' >> ~/.profile
+sudo mkdir -p ${GO_LOCAL_DIR}/{bin,pkg,src}
+sudo chmod -R 0777 ${GO_LOCAL_DIR}/
+echo "export GOPATH=${GO_LOCAL_DIR}" >> ~/.profile
+echo 'export PATH=$PATH:${GO_LOCAL_DIR}/bin' >> ~/.profile
 
 source ~/.profile
 
 go get -u github.com/golang/dep/cmd/dep
 go get -u github.com/golang/protobuf/{proto,protoc-gen-go}
+
+go get -u gopkg.in/alecthomas/gometalinter.v2
+gometalinter.v2 --install
 
 cd ~/
 curl -OL https://github.com/google/protobuf/releases/download/v3.2.0/protoc-3.2.0-linux-x86_64.zip
@@ -33,8 +37,7 @@ sudo mv protoc3/bin/* /usr/local/bin/
 sudo mv protoc3/include/* /usr/local/include/
 #sudo ln -s ~/protoc3/bin/protoc /usr/bin/protoc
 
-go get -u gopkg.in/alecthomas/gometalinter.v2
-gometalinter.v2 --install
+
 
 # Use SSH keys force
 #git config --global url.ssh://git@github.com/.insteadOf https://github.com/
