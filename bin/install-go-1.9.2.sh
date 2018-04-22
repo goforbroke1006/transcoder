@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-GO_DIST=go1.9.1.linux-amd64.tar.gz
+GO_DIST=go1.10.1.linux-amd64.tar.gz
 GO_LOCAL_DIR=~/golang
 
 sudo apt-get update
@@ -8,7 +8,7 @@ sudo apt-get install -y git curl wget
 
 cd ~/
 rm -f ${GO_DIST}
-wget -o ${GO_DIST} https://storage.googleapis.com/golang/${GO_DIST}
+wget -o ${GO_DIST} https://dl.google.com/go/${GO_DIST}
 sudo tar -C /usr/local -xvzf ${GO_DIST}
 rm -f ${GO_DIST}
 echo "export GOROOT=/usr/local/go" >> ~/.profile
