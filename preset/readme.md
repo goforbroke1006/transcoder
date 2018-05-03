@@ -88,7 +88,10 @@
 
         ffmpeg -y -i in.3gp out.webm
         ffmpeg -y -i in.3gp out.mp4
-    
+
+* 3gp (h263)
+
+        ffmpeg -i in.3gp -c:v libx264 -c:a aac -strict experimental out.webm
 
 * 3g2
 
